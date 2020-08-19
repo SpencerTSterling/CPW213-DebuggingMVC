@@ -45,7 +45,7 @@ namespace AspnetCoreWithBugs.Controllers
 
         public async Task<IActionResult> Edit(int id)
         {
-            var product = await _context.Product.FindAsync(id);
+            var product = await ProductDb.SelectProductAsync(_context, id);
             if (product == null)
             {
                 return NotFound();
@@ -67,8 +67,7 @@ namespace AspnetCoreWithBugs.Controllers
 
         public async Task<IActionResult> Delete(int id)
         {
-            var product = await _context.Product
-                .FirstOrDefaultAsync(m => m.ProductId == id);
+            var product = await ProductDb.SelectProductAsync(_context, id);
 
             if (product == null)
             {
@@ -81,7 +80,7 @@ namespace AspnetCoreWithBugs.Controllers
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var product = await _context.Product.FindAsync(id);
+            var product = await ProductDb.SelectProductAsync(_context, id);
             await ProductDb.DeleteProductAsync(_context, product);
             return RedirectToAction(nameof(Index));
         }

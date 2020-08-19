@@ -60,5 +60,21 @@ namespace AspnetCoreWithBugs.Data
             await _context.SaveChangesAsync();
             return p;
         }
+
+        /// <summary>
+        /// Finds a product with given id and returns it
+        /// </summary>
+        /// <param name="_context"></param>
+        /// <param name="id">ProductId of desired product</param>
+        /// <returns></returns>
+        public async static Task<Product> SelectProductAsync(ProductContext _context, int id)
+        {
+            Product p =
+                await (from prod in _context.Product
+                where prod.ProductId == id
+                select prod).SingleAsync();
+
+            return p;
+        }
     }
 }
