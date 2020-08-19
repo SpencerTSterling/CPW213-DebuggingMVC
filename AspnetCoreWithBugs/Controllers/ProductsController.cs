@@ -82,7 +82,7 @@ namespace AspnetCoreWithBugs.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var product = await _context.Product.FindAsync(id);
-            _context.Product.Remove(product);
+            await ProductDb.DeleteProductAsync(_context, product);
             return RedirectToAction(nameof(Index));
         }
 

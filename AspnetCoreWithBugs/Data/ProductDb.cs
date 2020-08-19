@@ -47,5 +47,18 @@ namespace AspnetCoreWithBugs.Data
             await _context.SaveChangesAsync();
             return p;
         }
+
+        /// <summary>
+        /// Deelets a product from the database
+        /// </summary>
+        /// <param name="_context"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public async static Task<Product> DeleteProductAsync(ProductContext _context, Product p)
+        {
+            _context.Entry(p).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+            return p;
+        }
     }
 }
