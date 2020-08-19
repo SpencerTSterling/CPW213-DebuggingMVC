@@ -14,7 +14,7 @@ namespace AspnetCoreWithBugs.Data
         /// </summary>
         /// <param name="_context"></param>
         /// <returns></returns>
-        public async static Task<List<Product>> ListProductsAysnc(ProductContext _context)
+        public async static Task<List<Product>> ListProductsAsync(ProductContext _context)
         {
             return await
                 (from p in _context.Product
