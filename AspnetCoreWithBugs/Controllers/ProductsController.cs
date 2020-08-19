@@ -37,7 +37,7 @@ namespace AspnetCoreWithBugs.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _context.AddAsync(product);
+                await ProductDb.CreateProductAsync(_context, product);
                 return RedirectToAction(nameof(Index));
             }
             return View(product);

@@ -22,5 +22,17 @@ namespace AspnetCoreWithBugs.Data
                  select p).ToListAsync();
         }
 
+        /// <summary>
+        /// Adds product to the database and saves it
+        /// </summary>
+        /// <param name="_context"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public async static Task<Product> CreateProductAsync(ProductContext _context, Product p)
+        {
+            _context.Product.Add(p);
+            await _context.SaveChangesAsync();
+            return p;
+        }
     }
 }
