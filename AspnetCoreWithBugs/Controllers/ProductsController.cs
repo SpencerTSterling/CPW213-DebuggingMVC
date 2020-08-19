@@ -58,8 +58,7 @@ namespace AspnetCoreWithBugs.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Update(product);
-                await _context.SaveChangesAsync();
+                await ProductDb.EditProductAsync(_context, product);
  
                 return RedirectToAction(nameof(Index));
             }

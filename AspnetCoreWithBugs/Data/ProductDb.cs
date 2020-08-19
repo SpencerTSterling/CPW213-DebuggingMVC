@@ -34,5 +34,18 @@ namespace AspnetCoreWithBugs.Data
             await _context.SaveChangesAsync();
             return p;
         }
+
+        /// <summary>
+        /// Edits/Updates a product inside the database and returns the new product
+        /// </summary>
+        /// <param name="_context"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public async static Task<Product> EditProductAsync(ProductContext _context, Product p)
+        {
+            _context.Entry(p).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return p;
+        }
     }
 }
